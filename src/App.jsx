@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { GifsGrid } from './components/GifsGrid';
 import { Info } from './components/Info';
-const GIPHY_APIKEY = "qgW0CRjPr80dQ32gRN3U8Uy74Q29F6M3"
+const GIPHY_KY = "qgW0CRjPr80dQ32gRN3U8Uy74Q29F6M3"
 const QUERIES = ["cats", "dogs", "smile"]
 const GIF_NUMBER = 9;
 function App() {
@@ -17,7 +17,7 @@ function App() {
       try {
         const query = QUERIES[Math.floor(Math.random()*QUERIES.length)]
         const url = new URL("https://api.giphy.com/v1/gifs/search")
-        url.searchParams.set("api_key", GIPHY_APIKEY);
+        url.searchParams.set("api_key", GIPHY_KY);
         url.searchParams.set("q", query);
         url.searchParams.set("limit", GIF_NUMBER);
         url.searchParams.set("rating", "g");
@@ -40,11 +40,7 @@ function App() {
   },[])
 
   function handleClick(imgId) {
-    console.log(imgId)
     const currentClick = clickedGifs.get(imgId) || 0;
-    console.log(currentClick);
-    console.log(clickedGifs);
-    console.log("-------------")
     if(currentClick>0) {
       alert("You lose, You clicked a image more than once.")
       setClickedGifs(new Map());
